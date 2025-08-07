@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+
+<html lang="id">
+
+  <head>
+
+    <meta charset="UTF-8">
+    <title>Form ke Tabel</title>
+    <style>
+
+body {
+  font-family: Arial, sans-serif;
+  
+  padding: 20px;
+}
+
+table {
+    width: 50%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+th, td {
+  padding: 10px;
+  border: 1px solid #333;
+  text-align: center;
+}
+
+input[type="text"], input[type="number"] {
+    padding: 5px;
+    margin: 5px;
+}
+</style>
+</head>
+<body>
+  <h2>Form Input Siswa</h2>
+<form id="formInput">
+    Nama: <input type="text" id="nama" required>
+    Usia: <input type="number" id="usia" required>
+    <button type="submit">Tambah</button>
+</form>
+<h3>Data Tabel:</h3>
+<table id="tabelData">
+    <thead>
+    <tr>
+        <th>No</th>
+        <th>Nama</th>
+        <th>Usia</th>
+    </tr>
+    </thead>
+<tbody>
+
+</tbody>
+</table>
+<script>
+ let no = 1;
+ document.getElementById("formInput").addEventListener("submit", function(event) {
+ event.preventDefault(); // Mencegah form reload halaman
+ const nama = document.getElementById("nama").value;
+ const usia = document.getElementById("usia").value;
+ const tabel = document.getElementById("tabelData").getElementsByTagName("tbody")[0];
+ const row = tabel.insertRow();
+ const cell1 = row.insertCell(0);
+ const cell2 = row.insertCell(1);
+ const cell3 = row.insertCell(2);
+ cell1.innerHTML = no++;
+ cell2.innerHTML = nama;
+ cell3.innerHTML = usia;
+ // Reset input
+ document.getElementById("formInput").reset();
+ });
+ </script>

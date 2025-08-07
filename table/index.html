@@ -36,7 +36,7 @@ input[type="text"], input[type="number"] {
   <h2>Form Input Siswa</h2>
 <form id="formInput">
     Nama: <input type="text" id="nama" required>
-    Usia: <input type="number" id="usia" required>
+    Usia: <input type="number" id="usia" required min="0">
     <button type="submit">Tambah</button>
 </form>
 <h3>Data Tabel:</h3>
@@ -55,18 +55,19 @@ input[type="text"], input[type="number"] {
 <script>
  let no = 1;
  document.getElementById("formInput").addEventListener("submit", function(event) {
- event.preventDefault(); // Mencegah form reload halaman
- const nama = document.getElementById("nama").value;
- const usia = document.getElementById("usia").value;
- const tabel = document.getElementById("tabelData").getElementsByTagName("tbody")[0];
- const row = tabel.insertRow();
- const cell1 = row.insertCell(0);
- const cell2 = row.insertCell(1);
- const cell3 = row.insertCell(2);
- cell1.innerHTML = no++;
- cell2.innerHTML = nama;
- cell3.innerHTML = usia;
- // Reset input
- document.getElementById("formInput").reset();
- });
+    event.preventDefault();
+    const nama = document.getElementById("nama").value;
+    const usiaInput = document.getElementById("usia");
+    let usia = usiaInput.value;
+    usia = usia < 0 ? 0 : usia; // Prevent usia below 0
+    const tabel = document.getElementById("tabelData").getElementsByTagName("tbody")[0];
+    const row = tabel.insertRow();
+    const cell1 = row.insertCell(0);
+    const cell2 = row.insertCell(1);
+    const cell3 = row.insertCell(2);
+    cell1.innerHTML = no++;
+    cell2.innerHTML = nama;
+    cell3.innerHTML = usia;
+    document.getElementById("formInput").reset();
+});
  </script>

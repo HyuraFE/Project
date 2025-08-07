@@ -1,73 +1,112 @@
-
 <!DOCTYPE html>
-
 <html lang="id">
-
-  <head>
-
+<head>
     <meta charset="UTF-8">
     <title>Form ke Tabel</title>
     <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
 
-body {
-  font-family: Arial, sans-serif;
-  
-  padding: 20px;
-}
+        h2, h3 {
+            color: #333;
+        }
 
-table {
-    width: 50%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-th, td {
-  padding: 10px;
-  border: 1px solid #333;
-  text-align: center;
-}
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
 
-input[type="text"], input[type="number"] {
-    padding: 5px;
-    margin: 5px;
-}
-</style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #333;
+            text-align: center;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        input[type="text"], input[type="number"] {
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: calc(100% - 22px); /* Adjust width to account for padding */
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
 </head>
 <body>
-  <h2>Form Input Siswa</h2>
-<form id="formInput">
-    Nama: <input type="text" id="nama" required>
-    Usia: <input type="number" id="usia" required min="0">
-    <button type="submit">Tambah</button>
-</form>
-<h3>Data Tabel:</h3>
-<table id="tabelData">
-    <thead>
-    <tr>
-        <th>No</th>
-        <th>Nama</th>
-        <th>Usia</th>
-    </tr>
-    </thead>
-<tbody>
-
-</tbody>
-</table>
-<script>
- let no = 1;
- document.getElementById("formInput").addEventListener("submit", function(event) {
-    event.preventDefault();
-    const nama = document.getElementById("nama").value;
-    const usiaInput = document.getElementById("usia");
-    let usia = usiaInput.value;
-    usia = usia < 0 ? 0 : usia; // Prevent usia below 0
-    const tabel = document.getElementById("tabelData").getElementsByTagName("tbody")[0];
-    const row = tabel.insertRow();
-    const cell1 = row.insertCell(0);
-    const cell2 = row.insertCell(1);
-    const cell3 = row.insertCell(2);
-    cell1.innerHTML = no++;
-    cell2.innerHTML = nama;
-    cell3.innerHTML = usia;
-    document.getElementById("formInput").reset();
-});
- </script>
+    <h2>Form Input Siswa</h2>
+    <form id="formInput">
+        Nama: <input type="text" id="nama" required>
+        Usia: <input type="number" id="usia" required min="0">
+        <button type="submit">Tambah</button>
+    </form>
+    <h3>Data Tabel:</h3>
+    <table id="tabelData">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama</th>
+                <th>Usia</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <script>
+        let no = 1;
+        document.getElementById("formInput").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const nama = document.getElementById("nama").value;
+            const usiaInput = document.getElementById("usia");
+            let usia = usiaInput.value;
+            usia = usia < 0 ? 0 : usia; // Prevent usia below 0
+            const tabel = document.getElementById("tabelData").getElementsByTagName("tbody")[0];
+            const row = tabel.insertRow();
+            const cell1 = row.insertCell(0);
+            const cell2 = row.insertCell(1);
+            const cell3 = row.insertCell(2);
+            cell1.innerHTML = no++;
+            cell2.innerHTML = nama;
+            cell3.innerHTML = usia;
+            document.getElementById("formInput").reset();
+        });
+    </script>
+</body>
+</html>
